@@ -12,9 +12,9 @@ public class Prefabs : MonoBehaviour {
 	[SerializeField] Enemy ghost;
 
 	[Header("Heroes")]
-	[SerializeField] Hero dwarf;
-	[SerializeField] Hero knight;
-	[SerializeField] Hero archer;
+	[SerializeField] Dwarf dwarf;
+	[SerializeField] Knight knight;
+	[SerializeField] Archer archer;
 
 
 	[Header("Projectiles")]

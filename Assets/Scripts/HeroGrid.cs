@@ -29,7 +29,7 @@ public class HeroGrid : MonoBehaviour {
 		if (isGridFull())
 			return;
 
-		Hero heroPrefab = Prefabs.getInstance().getHero(HeroType.knight);
+		Hero heroPrefab = Prefabs.getInstance().getHero(Random.Range(0, 3));
 		Hero hero = objectPool.spawn(heroPrefab.gameObject).GetComponent<Hero>();
 		getRandomCell().setHero(hero);
 	}

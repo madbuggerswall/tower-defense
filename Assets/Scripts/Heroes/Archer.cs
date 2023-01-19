@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knight : Hero {
-	const int defaultDamage = 10;
-	const float defaultDamagePeriod = 1;
-	const float defaultDamageRadius = 4;
+public class Archer : Hero {
+	const int defaultDamage = 4;
+	const float defaultDamagePeriod = 2;
+	const float defaultDamageRadius = 12;
 
 	void OnEnable() {
 		damage = defaultDamage;

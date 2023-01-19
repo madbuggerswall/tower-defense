@@ -17,16 +17,15 @@ public enum HeroType {
 	archer
 }
 
-public class Hero : MonoBehaviour {
+public abstract class Hero : MonoBehaviour {
 	[Header("Hero Properties")]
 	[SerializeField] int level = 1;
-	[SerializeField] HeroType heroType;
 	[SerializeField] Projectile projectilePrefab;
 
 	[Header("Damage Properties")]
-	[SerializeField] int damage = 10;
-	[SerializeField] float damagePeriod = 1;
-	[SerializeField] float damageRadius = 4;
+	[SerializeField] protected int damage = 10;
+	[SerializeField] protected float damagePeriod = 1;
+	[SerializeField] protected float damageRadius = 4;
 
 	Enemy target;
 	ObjectPool objectPool;
@@ -94,10 +93,10 @@ public class Hero : MonoBehaviour {
 			attack(target);
 			yield return new WaitForSeconds(period);
 		}
+		target = null;
 		isEngaging = false;
 	}
 
 	// Getters
 	public int getLevel() { return level; }
-	public HeroType getHeroType() { return heroType; }
 }
