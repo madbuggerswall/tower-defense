@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Dwarf:		high period, high damage, regular range
-// Knight:	regular period, regular damage, regular range
-// Archer:	regular period, low damage, high range
-
 // Dwarf:		Damage: 32 | Period: 4 | Radius: 4
 // Knight:	Damage: 10 | Period: 1 | Radius: 4
 // Archer:	Damage: 4	 | Period: 2 | Radius: 12
@@ -36,44 +32,37 @@ public abstract class Hero : MonoBehaviour {
 		objectPool = GetComponentInChildren<ObjectPool>();
 	}
 
-	void Start() {
-		StartCoroutine(checkRadiusPeriodically(damageRadius, 0.2f));
-	}
-
+	// IPoolable.reset()
 	protected virtual void OnEnable() {
 		isEngaging = false;
 		setLevel(1);
+		StartCoroutine(checkRadiusPeriodically(damageRadius, 0.2f));
 	}
 
 	// Break down this abomination of a function
 	IEnumerator checkRadiusPeriodically(float radius, float checkPeriod) {
-		// Overlap circle boilerplate
 		int layerMask = LayerMask.GetMask("Enemy");
-		Collider2D[] colliders = new Collider2D[4];
-		ContactFilter2D contactFilter = new ContactFilter2D();
-		contactFilter.SetLayerMask(layerMask);
-
 		List<Enemy> enemiesInRange = new List<Enemy>(4);
 
 		while (true) {
 			yield return new WaitForSeconds(checkPeriod);
 
 			// Get enemy colliders in range
-			int enemiesDetected = Physics2D.OverlapCircle(transform.position, radius, contactFilter, colliders);
-			if (enemiesDetected == 0)
+			Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layerMask);
+
+			// Checl again if empty
+			if (colliders.Length == 0)
 				continue;
-
 			// Add detected enemies to a list to be sorted
-			for (int i = 0; i < enemiesDetected; i++) {
-				Enemy enemy = colliders[i].GetComponent<Enemy>();
-				enemiesInRange.Add(enemy);
-			}
+			for (int i = 0; i < colliders.Length; i++)
+				enemiesInRange.Add(colliders[i].GetComponent<Enemy>());
 
-			// Sort detected enemies by path percentage, make the first the target
+			// Sort detected enemies by path percentage, make the first one the target
 			enemiesInRange.Sort((first, second) => second.getPathPercentage().CompareTo(first.getPathPercentage()));
 			target = enemiesInRange[0];
 			enemiesInRange.Clear();
 
+			// Start firing if it isn't already
 			if (!isEngaging)
 				StartCoroutine(attackPeriodically(damagePeriod));
 		}
