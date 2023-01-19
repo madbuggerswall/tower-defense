@@ -54,4 +54,9 @@ public class StatManager {
 				break;
 		}
 	}
+
+	public int getCyclopsesBeaten() { return cyclopsesBeaten; }
+	public int getGhostsBeaten() { return ghostsBeaten; }
+	public int getSpidersBeaten() { return spidersBeaten; }
+	public int getScore() { return score; }
 }

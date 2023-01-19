@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO Mana mechanics
-// TODO Mana mechanics: Enemies reward mana
-// TODO Mana mechanics: Each spawned hero increases mana required to spawn a hero
 // TODO Projectiles move with dragged heroes
 // TODO Stop heroes from firing when dragged
-// TODO StatManager
 // TODO Enemies start damaging princess
+// TODO Game over
 // TODO Menu screen
 // TODO Do more waves screen
 
