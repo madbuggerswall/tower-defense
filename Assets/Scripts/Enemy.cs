@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour {
 		healthBar.localScale = new Vector3(barScale, 1, 1);
 	}
 
-	void takeDamage(int damage) {
+	public void takeDamage(int damage) {
 		health -= damage;
 		updateHealthBar();
 

@@ -33,7 +33,6 @@ public abstract class Hero : MonoBehaviour {
 	bool isEngaging;
 
 	void Awake() {
-		isEngaging = false;
 		objectPool = GetComponentInChildren<ObjectPool>();
 	}
 
@@ -42,6 +41,7 @@ public abstract class Hero : MonoBehaviour {
 	}
 
 	protected virtual void OnEnable() {
+		isEngaging = false;
 		setLevel(1);
 	}
 
@@ -87,7 +87,7 @@ public abstract class Hero : MonoBehaviour {
 	// No collision damage, just as a visual effect.
 	void throwProjectile(Enemy target) {
 		Projectile projectile = objectPool.spawn(projectilePrefab.gameObject, transform.position).GetComponent<Projectile>();
-		projectile.throwAtTarget(target.transform, damage);
+		projectile.throwAtTarget(target, damage);
 	}
 
 	IEnumerator attackPeriodically(float period) {

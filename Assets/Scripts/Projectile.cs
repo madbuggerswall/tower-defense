@@ -12,31 +12,27 @@ public class Projectile : MonoBehaviour {
 	const float maxDelta = 12f;
 
 	int damage = 10;
-
-	Transform target;
-	Rigidbody2D rigidBody;
-
-	void Awake() {
-		rigidBody = GetComponent<Rigidbody2D>();
-		rigidBody.isKinematic = true;
-	}
+	Enemy target;
 
 	void Update() {
 		if (!target.gameObject.activeInHierarchy)
 			gameObject.SetActive(false);
+
+		if (transform.position == target.transform.position) {
+			target.takeDamage(damage);
+			gameObject.SetActive(false);
+		}
+
+		moveTowardsTarget(target.transform.position);
 	}
 
-	void FixedUpdate() {
-		Vector3 targetPosition = Vector3.MoveTowards(rigidBody.position, target.position, maxDelta * Time.fixedDeltaTime);
-		transform.up = target.position - transform.position;
-		rigidBody.MovePosition(targetPosition);
+	void moveTowardsTarget(Vector3 targetPosition) {
+		Vector3 towardsPosition = Vector3.MoveTowards(transform.position, targetPosition, maxDelta * Time.deltaTime);
+		transform.position = towardsPosition;
+		transform.up = targetPosition - transform.position;
 	}
 
-	void OnCollisionEnter2D(Collision2D other) {
-		gameObject.SetActive(false);
-	}
-
-	public void throwAtTarget(Transform target, int damage) {
+	public void throwAtTarget(Enemy target, int damage) {
 		this.target = target;
 		this.damage = damage;
 	}
