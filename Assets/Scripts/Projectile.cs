@@ -10,16 +10,15 @@ public enum ProjectileType {
 
 public class Projectile : MonoBehaviour {
 	const float maxDelta = 12f;
-	[SerializeField] Transform target;
 
+	int damage = 10;
+
+	Transform target;
 	Rigidbody2D rigidBody;
 
 	void Awake() {
 		rigidBody = GetComponent<Rigidbody2D>();
 		rigidBody.isKinematic = true;
-	}
-
-	void OnEnable() {
 	}
 
 	void Update() {
@@ -37,11 +36,11 @@ public class Projectile : MonoBehaviour {
 		gameObject.SetActive(false);
 	}
 
-	public void throwAtTarget(Transform target) {
+	public void throwAtTarget(Transform target, int damage) {
 		this.target = target;
+		this.damage = damage;
 	}
 
-	public Quaternion lookAtTarget(Vector2 direction) {
-		return Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-	}
+	// Getters
+	public int getDamage() { return damage; }
 }

@@ -66,7 +66,7 @@ public abstract class Hero : MonoBehaviour {
 			}
 
 			// Sort detected enemies by path percentage, make the first the target
-			enemiesInRange.Sort((first, second) => first.getPathPercentage().CompareTo(second.getPathPercentage()));
+			enemiesInRange.Sort((first, second) => second.getPathPercentage().CompareTo(first.getPathPercentage()));
 			target = enemiesInRange[0];
 			enemiesInRange.Clear();
 
@@ -77,21 +77,20 @@ public abstract class Hero : MonoBehaviour {
 
 	// Damage enemy and throw a projectile as a visual aid
 	void attack(Enemy enemy) {
-		enemy.takeDamage(damage);
 		throwProjectile(enemy);
 	}
 
 	// No collision damage, just as a visual effect.
 	void throwProjectile(Enemy target) {
 		Projectile projectile = objectPool.spawn(projectilePrefab.gameObject, transform.position).GetComponent<Projectile>();
-		projectile.throwAtTarget(target.transform);
+		projectile.throwAtTarget(target.transform, damage);
 	}
 
 	IEnumerator attackPeriodically(float period) {
 		isEngaging = true;
 		while (target != null && target.gameObject.activeInHierarchy) {
-			attack(target);
 			yield return new WaitForSeconds(period);
+			attack(target);
 		}
 		target = null;
 		isEngaging = false;

@@ -12,7 +12,6 @@ public enum EnemyType {
 	ghost
 }
 
-
 public class Enemy : MonoBehaviour {
 	const int maxHealth = 100;
 
@@ -41,6 +40,10 @@ public class Enemy : MonoBehaviour {
 		moveAlongPath(EnemyPath.getInstance());
 	}
 
+	void OnCollisionEnter2D(Collision2D other) {
+		takeDamage(other.gameObject.GetComponent<Projectile>().getDamage());
+	}
+
 	// Lerp along path, like a spline.
 	void moveAlongPath(EnemyPath path) {
 		pathPercentage += speed / path.getLength() * Time.deltaTime;
@@ -52,16 +55,12 @@ public class Enemy : MonoBehaviour {
 		healthBar.localScale = new Vector3(barScale, 1, 1);
 	}
 
-	public bool takeDamage(int damage) {
+	void takeDamage(int damage) {
 		health -= damage;
 		updateHealthBar();
 
-		if (health <= 0) {
+		if (health <= 0)
 			gameObject.SetActive(false);
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	public float getPathPercentage() { return pathPercentage; }
