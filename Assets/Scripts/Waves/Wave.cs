@@ -2,10 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum EnemyType {
-	cyclops
-}
-
 // DO NOT introduce generic type names such as Element, Node, Log, and Message [learn.microsoft suggests]
 // Rename this to EnemyWave
 

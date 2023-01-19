@@ -6,14 +6,21 @@ using UnityEngine;
 public class Prefabs : MonoBehaviour {
 	static Prefabs instance;
 
-	// Enemies
-	[SerializeField] Enemy enemy;
+	[Header("Enemies")]
+	[SerializeField] Enemy cyclops;
+	[SerializeField] Enemy spider;
+	[SerializeField] Enemy ghost;
 
-	// Heroes
-	[SerializeField] Hero hero;
+	[Header("Heroes")]
+	[SerializeField] Hero dwarf;
+	[SerializeField] Hero knight;
+	[SerializeField] Hero archer;
 
-	// Projectiles
-	[SerializeField] Projectile projectile;
+
+	[Header("Projectiles")]
+	[SerializeField] Projectile axe;
+	[SerializeField] Projectile dagger;
+	[SerializeField] Projectile arrow;
 
 	void Awake() {
 		assertSingleton();
@@ -22,30 +29,43 @@ public class Prefabs : MonoBehaviour {
 	public Enemy getEnemy(EnemyType enemyType) {
 		switch (enemyType) {
 			case EnemyType.cyclops:
-				return enemy;
-
+				return cyclops;
+			case EnemyType.spider:
+				return spider;
+			case EnemyType.ghost:
+				return ghost;
 			default:
-				return enemy;
+				return spider;
 		}
 	}
 
 	public Hero getHero(HeroType heroType) {
 		switch (heroType) {
+			case HeroType.dwarf:
+				return dwarf;
 			case HeroType.knight:
-				return hero;
-
+				return knight;
+			case HeroType.archer:
+				return archer;
 			default:
-				return hero;
+				return knight;
 		}
+	}
+
+	public Hero getHero(int heroType) {
+		return getHero((HeroType) heroType);
 	}
 
 	public Projectile getProjectile(ProjectileType projectileType) {
 		switch (projectileType) {
+			case ProjectileType.axe:
+				return axe;
 			case ProjectileType.dagger:
-				return projectile;
-
+				return dagger;
+			case ProjectileType.arrow:
+				return arrow;
 			default:
-				return projectile;
+				return dagger;
 		}
 	}
 

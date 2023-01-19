@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Cyclops: slow and strong
+// Spider: balanced
+// ghost: fast and weakz
+
+public enum EnemyType {
+	cyclops,
+	spider,
+	ghost
+}
+
+
 public class Enemy : MonoBehaviour {
 	const int maxHealth = 100;
 
@@ -13,16 +24,8 @@ public class Enemy : MonoBehaviour {
 
 	Rigidbody2D rigidBody;
 
-	// This should not be referenced
-	EnemyPath enemyPath;
-	int targetIndex = 0;
-
-
 	void Awake() {
-		enemyPath = FindObjectOfType<EnemyPath>();
-
 		rigidBody = GetComponent<Rigidbody2D>();
-
 		rigidBody.isKinematic = true;
 	}
 
@@ -30,33 +33,18 @@ public class Enemy : MonoBehaviour {
 	void OnEnable() {
 		health = maxHealth;
 		pathPercentage = 0;
-		targetIndex = 0;
 
 		updateHealthBar();
 	}
 
 	void FixedUpdate() {
-		// moveAlongPath(enemyPath);
-		moveTowardsNodes();
+		moveAlongPath(EnemyPath.getInstance());
 	}
 
 	// Lerp along path, like a spline.
 	void moveAlongPath(EnemyPath path) {
-		pathPercentage += speed / enemyPath.getLength() * Time.deltaTime;
-		rigidBody.MovePosition(enemyPath.getPosition(pathPercentage));
-	}
-
-	// Botched but more performant movement, requires targetIndex
-	void moveTowardsNodes() {
-		if (targetIndex >= enemyPath.getNodes().Length)
-			return;
-
-		if (rigidBody.position != (Vector2) enemyPath.getNodes()[targetIndex].position) {
-			Vector2 target = enemyPath.getNodes()[targetIndex].position;
-			rigidBody.MovePosition(Vector3.MoveTowards(rigidBody.position, target, speed * Time.fixedDeltaTime));
-		} else {
-			targetIndex++;
-		}
+		pathPercentage += speed / path.getLength() * Time.deltaTime;
+		rigidBody.MovePosition(path.getPosition(pathPercentage));
 	}
 
 	void updateHealthBar() {
@@ -75,4 +63,6 @@ public class Enemy : MonoBehaviour {
 			return false;
 		}
 	}
+
+	public float getPathPercentage() { return pathPercentage; }
 }

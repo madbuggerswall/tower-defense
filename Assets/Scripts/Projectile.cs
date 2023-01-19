@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ProjectileType {
-	dagger
+	axe,
+	dagger,
+	arrow
 }
 
 public class Projectile : MonoBehaviour {
