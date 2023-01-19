@@ -3,20 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MergeController : MonoBehaviour {
-	Hero mergingHero;
+	[SerializeField] Hero mergingHero;
 	Hero hero;
+
+	bool isDragged;
 
 	void Awake() {
 		hero = GetComponent<Hero>();
+		isDragged = false;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.layer == LayerMask.NameToLayer("Hero")) {
-			mergingHero = other.GetComponent<Hero>();
+		if (!isDragged)
+			return;
+		if (other.gameObject.layer != LayerMask.NameToLayer("Hero"))
+			return;
+
+		mergingHero = other.GetComponent<Hero>();
+	}
+
+	void OnTriggerExit2D(Collider2D other) {
+		if (!isDragged)
+			return;
+		if (other.gameObject.layer != LayerMask.NameToLayer("Hero"))
+			return;
+
+		if (other.gameObject == mergingHero?.gameObject) {
+			mergingHero = null;
 		}
 	}
 
 	void OnMouseDown() {
+		isDragged = true;
 	}
 
 	void OnMouseDrag() {
@@ -25,11 +43,20 @@ public class MergeController : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
-		bool sameType = mergingHero?.GetType() == hero.GetType();
-		bool sameLevel = mergingHero?.getLevel() == hero.getLevel();
-		if (sameType && sameLevel) {
-			// Put a random level+1 hero in mergingHero's cell
-			// Disable these two heroes
+		isDragged = false;
+
+
+		if (canMerge(hero, mergingHero)) {
+			// Target cell
+			Cell cell = mergingHero.GetComponentInParent<Cell>();
+
+			// Remove heroes from their respective cells
+			hero.GetComponentInParent<Cell>().removeHero();
+			mergingHero.GetComponentInParent<Cell>().removeHero();
+
+			// Spawn a new hero at target cell
+			HeroSpawner.getInstance().spawnRandomHeroAtCell(cell, hero.getLevel() + 1);
+
 		} else {
 			transform.localPosition = Vector3.zero;
 		}
@@ -40,5 +67,11 @@ public class MergeController : MonoBehaviour {
 		float mousePosY = Mathf.Clamp(Input.mousePosition.y, 0, Screen.height);
 
 		return Camera.main.ScreenToWorldPoint(new Vector3(mousePosX, mousePosY, 0));
+	}
+
+	bool canMerge(Hero hero, Hero mergingHero) {
+		bool sameType = mergingHero?.GetType() == hero.GetType();
+		bool sameLevel = mergingHero?.getLevel() == hero.getLevel();
+		return sameType && sameLevel;
 	}
 }

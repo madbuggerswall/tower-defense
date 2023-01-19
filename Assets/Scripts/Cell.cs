@@ -11,5 +11,9 @@ public class Cell : MonoBehaviour {
 		hero.transform.localPosition = Vector3.zero;
 	}
 
-	public void removeHero() { hero = null; }
+	public void removeHero() {
+		hero.transform.parent = HeroSpawner.getInstance().GetComponentInChildren<ObjectPool>().transform;
+		hero.gameObject.SetActive(false);
+		hero = null;
+	}
 }

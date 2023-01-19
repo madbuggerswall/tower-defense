@@ -41,6 +41,10 @@ public abstract class Hero : MonoBehaviour {
 		StartCoroutine(checkRadiusPeriodically(damageRadius, 0.2f));
 	}
 
+	protected virtual void OnEnable() {
+		setLevel(1);
+	}
+
 	// Break down this abomination of a function
 	IEnumerator checkRadiusPeriodically(float radius, float checkPeriod) {
 		// Overlap circle boilerplate
@@ -94,6 +98,19 @@ public abstract class Hero : MonoBehaviour {
 		}
 		target = null;
 		isEngaging = false;
+	}
+
+	// Each stat buffed 10%
+	public void setLevel(int level) {
+		for (int i = this.level; i < level; i++) {
+			damage += Mathf.CeilToInt(damage * 0.1f);
+			damagePeriod -= damagePeriod * 0.1f;
+			damageRadius += damageRadius * 0.1f;
+		}
+
+		// Update Hero UI
+		this.level = level;
+		GetComponentInChildren<UnityEngine.UI.Text>().text = level.ToString();
 	}
 
 	// Getters

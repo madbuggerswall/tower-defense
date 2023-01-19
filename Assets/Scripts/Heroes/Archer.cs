@@ -7,7 +7,8 @@ public class Archer : Hero {
 	const float defaultDamagePeriod = 2;
 	const float defaultDamageRadius = 12;
 
-	void OnEnable() {
+	protected override void OnEnable() {
+		base.OnEnable();
 		damage = defaultDamage;
 		damagePeriod = defaultDamagePeriod;
 		damageRadius = defaultDamageRadius;

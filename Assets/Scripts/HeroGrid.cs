@@ -7,31 +7,11 @@ public class HeroGrid : MonoBehaviour {
 	readonly Vector2Int gridSize = new Vector2Int(3, 5);
 
 	Grid grid;
-	ObjectPool objectPool;
-
 	Cell[,] cells;
 
 	void Awake() {
 		grid = GetComponentInParent<Grid>();
-		objectPool = GetComponentInChildren<ObjectPool>();
-
 		initializeCells();
-	}
-
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.H)) {
-			spawnRandomHero();
-		}
-	}
-
-	// Spawns a random hero at an empty space if grid has one
-	void spawnRandomHero() {
-		if (isGridFull())
-			return;
-
-		Hero heroPrefab = Prefabs.getInstance().getHero(Random.Range(0, 3));
-		Hero hero = objectPool.spawn(heroPrefab.gameObject).GetComponent<Hero>();
-		getRandomCell().setHero(hero);
 	}
 
 	// Very manual way of initializing a grid
@@ -47,7 +27,7 @@ public class HeroGrid : MonoBehaviour {
 	}
 
 	// Returns if grid is full of heroes
-	bool isGridFull() {
+	public bool isGridFull() {
 		for (int i = 0; i < cells.GetLength(0); i++) {
 			for (int j = 0; j < cells.GetLength(1); j++) {
 				if (cells[i, j].hero == null)
@@ -58,7 +38,7 @@ public class HeroGrid : MonoBehaviour {
 	}
 
 	// Get a random empty cell
-	Cell getRandomCell() {
+	public Cell getRandomCell() {
 		Vector2Int randomIndex;
 		do {
 			randomIndex = new Vector2Int(Random.Range(0, gridSize.x), Random.Range(0, gridSize.y));

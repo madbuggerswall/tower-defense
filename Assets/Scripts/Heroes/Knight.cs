@@ -7,7 +7,8 @@ public class Knight : Hero {
 	const float defaultDamagePeriod = 1;
 	const float defaultDamageRadius = 4;
 
-	void OnEnable() {
+	protected override void OnEnable() {
+		base.OnEnable();
 		damage = defaultDamage;
 		damagePeriod = defaultDamagePeriod;
 		damageRadius = defaultDamageRadius;
