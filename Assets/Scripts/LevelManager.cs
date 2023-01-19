@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour {
 		// Gamemanager
 		Application.targetFrameRate = 60;
 
+		assertSingleton();
+
 		enemyPath = FindObjectOfType<EnemyPath>();
 		heroGrid = FindObjectOfType<HeroGrid>();
 		heroSpawner = FindObjectOfType<HeroSpawner>();
@@ -33,6 +35,6 @@ public class LevelManager : MonoBehaviour {
 	public HeroGrid getHeroGrid() { return heroGrid; }
 	public HeroSpawner getHeroSpawner() { return heroSpawner; }
 	public EnemySpawner getEnemySpawner() { return enemySpawner; }
-	
+
 	public StatManager getStatManager() { return statManager; }
 }

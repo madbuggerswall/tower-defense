@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Archer : Hero {
 	const int defaultDamage = 4;
-	const float defaultDamagePeriod = 2;
+	const float defaultDamagePeriod = 1.6f;
 	const float defaultDamageRadius = 12;
 
 	protected override void OnEnable() {

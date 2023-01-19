@@ -8,6 +8,9 @@ using UnityEngine;
 // TODO Projectiles move with dragged heroes
 // TODO Stop heroes from firing when dragged
 // TODO StatManager
+// TODO Enemies start damaging princess
+// TODO Menu screen
+// TODO Do more waves screen
 
 public class HeroSpawner : MonoBehaviour {
 	const int manaIncrement = 10;
@@ -29,14 +32,8 @@ public class HeroSpawner : MonoBehaviour {
 		Events.getInstance().enemyBeaten.AddListener(gainMana);
 	}
 
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.H)) {
-			spawnRandomHero();
-		}
-	}
-
 	// Spawns a random hero if grid has an empty space or spawner has enough mana
-	void spawnRandomHero() {
+	public void spawnRandomHero() {
 		HeroGrid heroGrid = LevelManager.getInstance().getHeroGrid();
 
 		if (mana < manaRequired || heroGrid.isGridFull())
@@ -44,7 +41,7 @@ public class HeroSpawner : MonoBehaviour {
 
 		mana -= manaRequired;
 		manaRequired += manaIncrement;
-		
+
 		Hero hero = spawnRandomHeroAtCell(heroGrid.getRandomCell());
 		Events.getInstance().heroSpawned.Invoke(hero.getHeroType());
 	}
@@ -79,4 +76,8 @@ public class HeroSpawner : MonoBehaviour {
 		cell.setHero(hero);
 		return hero;
 	}
+
+	// Getters
+	public int getMana() { return mana; }
+	public int getManaRequired() { return manaRequired; }
 }
