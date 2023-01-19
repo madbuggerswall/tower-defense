@@ -12,7 +12,7 @@ public class Cell : MonoBehaviour {
 	}
 
 	public void removeHero() {
-		hero.transform.parent = HeroSpawner.getInstance().GetComponentInChildren<ObjectPool>().transform;
+		hero.transform.parent = LevelManager.getInstance().getHeroSpawner().GetComponentInChildren<ObjectPool>().transform;
 		hero.gameObject.SetActive(false);
 		hero = null;
 	}

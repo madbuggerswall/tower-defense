@@ -1,6 +1,6 @@
 class Ghost : Enemy {
 	const int defaultHealth = 100;
-	const float defaultSpeed = 1.6f;
+	const float defaultSpeed = 1f;
 
 	protected override void OnEnable() {
 		health = defaultHealth;

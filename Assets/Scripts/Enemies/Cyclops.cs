@@ -1,6 +1,6 @@
 class Cyclops : Enemy {
 	const int defaultHealth = 160;
-	const float defaultSpeed = 1;
+	const float defaultSpeed = 0.8f;
 
 	protected override void OnEnable() {
 		health = defaultHealth;

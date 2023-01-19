@@ -10,8 +10,6 @@ using UnityEngine;
 // TODO StatManager
 
 public class HeroSpawner : MonoBehaviour {
-	static HeroSpawner instance;
-
 	const int manaIncrement = 10;
 	const int initialMana = 60;
 
@@ -21,13 +19,14 @@ public class HeroSpawner : MonoBehaviour {
 	ObjectPool objectPool;
 
 	void Awake() {
-		assertSingleton();
 		objectPool = GetComponentInChildren<ObjectPool>();
 	}
 
 	void Start() {
 		mana = initialMana;
 		manaRequired = manaIncrement;
+
+		Events.getInstance().enemyBeaten.AddListener(gainMana);
 	}
 
 	void Update() {
@@ -36,21 +35,33 @@ public class HeroSpawner : MonoBehaviour {
 		}
 	}
 
-	// Singleton
-	public static HeroSpawner getInstance() { return instance; }
-	void assertSingleton() { if (instance == null) { instance = this; } else { Destroy(gameObject); } }
+	// Spawns a random hero if grid has an empty space or spawner has enough mana
+	void spawnRandomHero() {
+		HeroGrid heroGrid = LevelManager.getInstance().getHeroGrid();
 
-	// Spawns a random hero at an empty space if grid has one
-	public void spawnRandomHero() {
-		HeroGrid heroGrid = FindObjectOfType<HeroGrid>();
-		
 		if (mana < manaRequired || heroGrid.isGridFull())
 			return;
 
 		mana -= manaRequired;
+		manaRequired += manaIncrement;
+		
 		Hero hero = spawnRandomHeroAtCell(heroGrid.getRandomCell());
+		Events.getInstance().heroSpawned.Invoke(hero.getHeroType());
 	}
 
+	void gainMana(EnemyType enemyType) {
+		switch (enemyType) {
+			case EnemyType.cyclops:
+				mana += 30;
+				break;
+			case EnemyType.ghost:
+				mana += 20;
+				break;
+			case EnemyType.spider:
+				mana += 10;
+				break;
+		}
+	}
 
 	// Spawns a random hero at cell
 	Hero spawnRandomHeroAtCell(Cell cell) {

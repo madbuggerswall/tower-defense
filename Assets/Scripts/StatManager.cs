@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-class StatManager {
+public class StatManager {
 	const int cyclopsScore = 30;
 	const int ghostScore = 20;
 	const int spiderScore = 10;

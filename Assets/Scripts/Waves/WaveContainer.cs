@@ -11,39 +11,39 @@ public class WaveContainer {
 	void initializeWaves() {
 		Wave wave1 = new Wave(4);
 		wave1.setEnemies(
-			EnemyType.spider,
-			EnemyType.spider,
-			EnemyType.spider,
-			EnemyType.spider);
+			EnemyType.ghost,
+			EnemyType.ghost,
+			EnemyType.ghost,
+			EnemyType.ghost);
 
 		Wave wave2 = new Wave(4);
 		wave2.setEnemies(
-			(8, EnemyType.spider),
+			(8, EnemyType.ghost),
 			(4, EnemyType.cyclops));
 
 		Wave wave3 = new Wave(4);
 		wave3.setEnemies(
-			(4, EnemyType.spider),
 			(4, EnemyType.ghost),
+			(4, EnemyType.spider),
 			(4, EnemyType.cyclops));
 
 		Wave wave4 = new Wave(3.2f);
 		wave4.setEnemies(
-			(8, EnemyType.spider),
-			(4, EnemyType.ghost));
+			(8, EnemyType.ghost),
+			(4, EnemyType.spider));
 
 		Wave wave5 = new Wave(3.2f);
 		wave5.setEnemies(
-			(4, EnemyType.spider),
 			(4, EnemyType.ghost),
 			(4, EnemyType.spider),
-			(4, EnemyType.ghost));
+			(4, EnemyType.ghost),
+			(4, EnemyType.spider));
 
 		Wave wave6 = new Wave(3.2f);
 		wave6.setEnemies(
-			(4, EnemyType.spider),
+			(4, EnemyType.ghost),
 			(2, EnemyType.cyclops),
-			(4, EnemyType.spider),
+			(4, EnemyType.ghost),
 			(2, EnemyType.cyclops));
 
 		queue = new Queue<Wave>();

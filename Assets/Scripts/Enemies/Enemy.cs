@@ -33,7 +33,7 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		moveAlongPath(EnemyPath.getInstance());
+		moveAlongPath(LevelManager.getInstance().getEnemyPath());
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {

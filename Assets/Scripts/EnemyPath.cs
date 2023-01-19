@@ -3,26 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPath : MonoBehaviour {
-	static EnemyPath instance;
-
 	Transform[] nodes;
 
 	float length;
 	float[] edgeLengths;
 
 	void Awake() {
-		assertSingleton();
-		
 		nodes = GetComponentsInChildren<Transform>()[System.Range.StartAt(1)];
 		edgeLengths = new float[nodes.Length - 1];
 
 		calculateEdgeLengths();
 		calculateLength();
 	}
-
-	// Singleton
-	public static EnemyPath getInstance() { return instance; }
-	void assertSingleton() { if (instance == null) { instance = this; } else { Destroy(gameObject); } }
 
 	// Store edge lengths for later calculations
 	void calculateEdgeLengths() {

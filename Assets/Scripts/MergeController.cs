@@ -55,7 +55,8 @@ public class MergeController : MonoBehaviour {
 			mergingHero.GetComponentInParent<Cell>().removeHero();
 
 			// Spawn a new hero at target cell
-			HeroSpawner.getInstance().spawnRandomHeroAtCell(cell, hero.getLevel() + 1);
+			HeroSpawner heroSpawner = LevelManager.getInstance().getHeroSpawner();
+			heroSpawner.spawnRandomHeroAtCell(cell, hero.getLevel() + 1);
 
 		} else {
 			transform.localPosition = Vector3.zero;
