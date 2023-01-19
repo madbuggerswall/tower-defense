@@ -13833,9 +13833,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489fc06dd2e5c4145af46243e969413a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cyclops: {fileID: 2136875210}
-  spider: {fileID: 1263884633}
-  ghost: {fileID: 709808775}
+  cyclops: {fileID: 2136875213}
+  spider: {fileID: 1263884637}
+  ghost: {fileID: 709808779}
   dwarf: {fileID: 202627890}
   knight: {fileID: 10831130}
   archer: {fileID: 338799947}
@@ -13951,7 +13951,7 @@ GameObject:
   - component: {fileID: 709808778}
   - component: {fileID: 709808777}
   - component: {fileID: 709808776}
-  - component: {fileID: 709808775}
+  - component: {fileID: 709808779}
   m_Layer: 7
   m_Name: Ghost
   m_TagString: Untagged
@@ -13975,22 +13975,6 @@ Transform:
   m_Father: {fileID: 1944175622}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &709808775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709808773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bba897c0b3e428a830541546efa111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  speed: 1
-  pathPercentage: 0
-  healthBar: {fileID: 1594511168}
 --- !u!61 &709808776
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14090,6 +14074,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &709808779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709808773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859ebd425010448b3a000fc1bcf86980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 80
+  speed: 2
+  pathPercentage: 0
+  healthBar: {fileID: 1594511168}
 --- !u!1 &722091298
 GameObject:
   m_ObjectHideFlags: 0
@@ -19093,7 +19093,7 @@ GameObject:
   - component: {fileID: 1263884636}
   - component: {fileID: 1263884635}
   - component: {fileID: 1263884634}
-  - component: {fileID: 1263884633}
+  - component: {fileID: 1263884637}
   m_Layer: 7
   m_Name: Spider
   m_TagString: Untagged
@@ -19117,22 +19117,6 @@ Transform:
   m_Father: {fileID: 1944175622}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1263884633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263884631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bba897c0b3e428a830541546efa111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  speed: 1
-  pathPercentage: 0
-  healthBar: {fileID: 405774567}
 --- !u!61 &1263884634
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19232,6 +19216,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1263884637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263884631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2edfa9b89fc4b328d54982d4a8723f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  speed: 1.6
+  pathPercentage: 0
+  healthBar: {fileID: 405774567}
 --- !u!1 &1280138139
 GameObject:
   m_ObjectHideFlags: 0
@@ -21334,7 +21334,7 @@ GameObject:
   - component: {fileID: 2136875208}
   - component: {fileID: 2136875212}
   - component: {fileID: 2136875211}
-  - component: {fileID: 2136875210}
+  - component: {fileID: 2136875213}
   m_Layer: 7
   m_Name: Cyclops
   m_TagString: Untagged
@@ -21410,22 +21410,6 @@ Transform:
   m_Father: {fileID: 1944175622}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2136875210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2136875207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bba897c0b3e428a830541546efa111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  speed: 1
-  pathPercentage: 0
-  healthBar: {fileID: 584242787}
 --- !u!61 &2136875211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21473,3 +21457,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2136875213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136875207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca0a2fa310b74bfcab480596b6140a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 160
+  speed: 1
+  pathPercentage: 0
+  healthBar: {fileID: 584242787}

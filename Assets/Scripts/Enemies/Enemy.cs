@@ -12,11 +12,9 @@ public enum EnemyType {
 	ghost
 }
 
-public class Enemy : MonoBehaviour {
-	const int maxHealth = 100;
-
-	[SerializeField] int health;
-	[SerializeField] float speed;
+public abstract class Enemy : MonoBehaviour {
+	[SerializeField] protected int health;
+	[SerializeField] protected float speed;
 	[SerializeField] float pathPercentage;
 
 	[SerializeField] Transform healthBar;
@@ -29,10 +27,8 @@ public class Enemy : MonoBehaviour {
 	}
 
 	// ObjectPool, IPoolable.Reset
-	void OnEnable() {
-		health = maxHealth;
+	protected virtual void OnEnable() {
 		pathPercentage = 0;
-
 		updateHealthBar();
 	}
 
@@ -51,7 +47,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void updateHealthBar() {
-		float barScale = Mathf.Clamp((float) health / maxHealth, 0, maxHealth);
+		float barScale = Mathf.Clamp((float) health / getDefaultHealth(), 0, getDefaultHealth());
 		healthBar.localScale = new Vector3(barScale, 1, 1);
 	}
 
@@ -59,9 +55,15 @@ public class Enemy : MonoBehaviour {
 		health -= damage;
 		updateHealthBar();
 
-		if (health <= 0)
+		if (health <= 0) {
 			gameObject.SetActive(false);
+			Events.getInstance().enemyBeaten.Invoke(getEnemyType());
+		}
 	}
+
+	// Getters
+	protected abstract int getDefaultHealth();
+	protected abstract EnemyType getEnemyType();
 
 	public float getPathPercentage() { return pathPercentage; }
 }

@@ -13,4 +13,6 @@ public class Dwarf : Hero {
 		damagePeriod = defaultDamagePeriod;
 		damageRadius = defaultDamageRadius;
 	}
+
+	public override HeroType getHeroType() { return HeroType.dwarf; }
 }

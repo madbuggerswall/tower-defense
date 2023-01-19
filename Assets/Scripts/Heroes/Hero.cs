@@ -50,9 +50,10 @@ public abstract class Hero : MonoBehaviour {
 			// Get enemy colliders in range
 			Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, layerMask);
 
-			// Checl again if empty
+			// Check again if empty
 			if (colliders.Length == 0)
 				continue;
+				
 			// Add detected enemies to a list to be sorted
 			for (int i = 0; i < colliders.Length; i++)
 				enemiesInRange.Add(colliders[i].GetComponent<Enemy>());
@@ -103,5 +104,9 @@ public abstract class Hero : MonoBehaviour {
 	}
 
 	// Getters
+	
+	// Because propogating a System.Type would be ugly
+	public abstract HeroType getHeroType();
+
 	public int getLevel() { return level; }
 }

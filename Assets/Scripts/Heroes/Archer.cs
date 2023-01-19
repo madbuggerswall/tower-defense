@@ -13,4 +13,6 @@ public class Archer : Hero {
 		damagePeriod = defaultDamagePeriod;
 		damageRadius = defaultDamageRadius;
 	}
+
+	public override HeroType getHeroType() { return HeroType.archer; }
 }
