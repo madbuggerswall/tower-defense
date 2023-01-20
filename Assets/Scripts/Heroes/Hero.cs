@@ -27,6 +27,10 @@ public abstract class Hero : MonoBehaviour {
 
 	bool isEngaging;
 
+	void Start() {
+		Events.getInstance().gameOver.AddListener(delegate { gameObject.SetActive(false); });
+	}
+
 	// IPoolable.reset()
 	protected virtual void OnEnable() {
 		isEngaging = false;

@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	void Start() {
+		Events.getInstance().gameOver.AddListener(delegate { StopAllCoroutines(); });
 		StartCoroutine(spawnWaves(waveContainer));
 	}
 

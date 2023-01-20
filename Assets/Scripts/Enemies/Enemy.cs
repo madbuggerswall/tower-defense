@@ -30,6 +30,10 @@ public abstract class Enemy : MonoBehaviour {
 		rigidBody.isKinematic = true;
 	}
 
+	void Start() {
+		Events.getInstance().gameOver.AddListener(delegate { gameObject.SetActive(false); });
+	}
+
 	// ObjectPool, IPoolable.Reset
 	protected virtual void OnEnable() {
 		pathPercentage = 0;

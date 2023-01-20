@@ -45,19 +45,8 @@ public class MergeController : MonoBehaviour {
 	void OnMouseUp() {
 		isDragged = false;
 
-
 		if (canMerge(hero, mergingHero)) {
-			// Target cell
-			Cell cell = mergingHero.GetComponentInParent<Cell>();
-
-			// Remove heroes from their respective cells
-			hero.GetComponentInParent<Cell>().removeHero();
-			mergingHero.GetComponentInParent<Cell>().removeHero();
-
-			// Spawn a new hero at target cell
-			HeroSpawner heroSpawner = LevelManager.getInstance().getHeroSpawner();
-			heroSpawner.spawnRandomHeroAtCell(cell, hero.getLevel() + 1);
-
+			merge(hero, mergingHero);
 		} else {
 			transform.localPosition = Vector3.zero;
 		}
@@ -74,5 +63,18 @@ public class MergeController : MonoBehaviour {
 		bool sameType = mergingHero?.GetType() == hero.GetType();
 		bool sameLevel = mergingHero?.getLevel() == hero.getLevel();
 		return sameType && sameLevel;
+	}
+
+	void merge(Hero hero, Hero mergingHero) {
+		// Target cell
+		Cell cell = mergingHero.GetComponentInParent<Cell>();
+
+		// Remove heroes from their respective cells
+		hero.GetComponentInParent<Cell>().removeHero();
+		mergingHero.GetComponentInParent<Cell>().removeHero();
+
+		// Spawn a new hero at target cell
+		HeroSpawner heroSpawner = LevelManager.getInstance().getHeroSpawner();
+		heroSpawner.spawnRandomHeroAtCell(cell, hero.getLevel() + 1);
 	}
 }
