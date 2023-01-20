@@ -15582,7 +15582,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: -666970892, guid: 088efab124ccc4f4c88665750438b9ff, type: 3}
+  m_Sprite: {fileID: 928710304, guid: 512852f04aaa341c5a3a49be20082e21, type: 3}
   m_Color: {r: 0.9622642, g: 0.19245291, b: 0.19245282, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15590,7 +15590,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &948976496
@@ -20989,7 +20989,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: -666970892, guid: 088efab124ccc4f4c88665750438b9ff, type: 3}
+  m_Sprite: {fileID: 928710304, guid: 512852f04aaa341c5a3a49be20082e21, type: 3}
   m_Color: {r: 0.9622642, g: 0.19245291, b: 0.19245282, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -20997,7 +20997,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1594511167
@@ -22627,7 +22627,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: -666970892, guid: 088efab124ccc4f4c88665750438b9ff, type: 3}
+  m_Sprite: {fileID: 928710304, guid: 512852f04aaa341c5a3a49be20082e21, type: 3}
   m_Color: {r: 0.9622642, g: 0.19245291, b: 0.19245282, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -22635,7 +22635,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2061160050
@@ -22711,7 +22711,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: -666970892, guid: 088efab124ccc4f4c88665750438b9ff, type: 3}
+  m_Sprite: {fileID: 928710304, guid: 512852f04aaa341c5a3a49be20082e21, type: 3}
   m_Color: {r: 0.9622642, g: 0.19245291, b: 0.19245282, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -22719,7 +22719,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2126774558
