@@ -5,6 +5,7 @@ class Spider : Enemy {
 
 	protected override void OnEnable() {
 		health = defaultHealth;
+		damage = defaultDamage;
 		speed = defaultSpeed;
 		base.OnEnable();
 	}

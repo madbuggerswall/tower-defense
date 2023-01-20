@@ -7,6 +7,10 @@ public class Princess : MonoBehaviour {
 	[SerializeField] int health;
 	[SerializeField] Transform healthBar;
 
+	void Awake() {
+		health = maxHealth;
+	}
+
 	void updateHealthBar() {
 		float barScale = Mathf.Clamp((float) health / maxHealth, 0, maxHealth);
 		healthBar.localScale = new Vector3(barScale, 1, 1);
@@ -17,7 +21,7 @@ public class Princess : MonoBehaviour {
 		updateHealthBar();
 
 		if (health <= 0) {
-			// Game Over
+			Events.getInstance().gameOver.Invoke();
 		}
 	}
 }

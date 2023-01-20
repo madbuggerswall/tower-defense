@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // Cyclops: slow and strong
 // Spider: balanced
@@ -14,12 +15,15 @@ public enum EnemyType {
 
 public abstract class Enemy : MonoBehaviour {
 	[SerializeField] protected int health;
+	[SerializeField] protected int damage;
 	[SerializeField] protected float speed;
 	[SerializeField] float pathPercentage;
 
 	[SerializeField] Transform healthBar;
 
 	Rigidbody2D rigidBody;
+
+	UnityAction movementAction;
 
 	void Awake() {
 		rigidBody = GetComponent<Rigidbody2D>();
@@ -29,17 +33,23 @@ public abstract class Enemy : MonoBehaviour {
 	// ObjectPool, IPoolable.Reset
 	protected virtual void OnEnable() {
 		pathPercentage = 0;
+		movementAction = delegate { moveAlongPath(LevelManager.getInstance().getEnemyPath()); };
 		updateHealthBar();
 	}
 
 	void FixedUpdate() {
-		moveAlongPath(LevelManager.getInstance().getEnemyPath());
+		movementAction();
 	}
 
 	// Lerp along path, like a spline.
 	void moveAlongPath(EnemyPath path) {
 		pathPercentage += speed / path.getLength() * Time.deltaTime;
 		rigidBody.MovePosition(path.getPosition(pathPercentage));
+
+		if (pathPercentage >= 1) {
+			StartCoroutine(attackPeriodically(1f));
+			movementAction = delegate { };
+		}
 	}
 
 	void updateHealthBar() {
@@ -54,6 +64,14 @@ public abstract class Enemy : MonoBehaviour {
 		if (health <= 0) {
 			gameObject.SetActive(false);
 			Events.getInstance().enemyBeaten.Invoke(getEnemyType());
+		}
+	}
+
+	IEnumerator attackPeriodically(float period) {
+		Princess princess = LevelManager.getInstance().getPrincess();
+		while (true) {
+			princess.takeDamage(damage);
+			yield return new WaitForSeconds(period);
 		}
 	}
 

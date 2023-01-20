@@ -9,11 +9,13 @@ public class Events {
 	public UnityEvent<int> waveBegan;
 	public UnityEvent<HeroType> heroSpawned;
 	public UnityEvent<EnemyType> enemyBeaten;
+	public UnityEvent gameOver;
 
 	public Events() {
 		waveBegan = new UnityEvent<int>();
 		enemyBeaten = new UnityEvent<EnemyType>();
 		heroSpawned = new UnityEvent<HeroType>();
+		gameOver = new UnityEvent();
 	}
 
 	public static Events getInstance() {

@@ -19,8 +19,22 @@ public class UIManager : MonoBehaviour {
 	[SerializeField] Text mana;
 	[SerializeField] Text wave;
 
+	[Header("Game Over Panel")]
+	[SerializeField] GameObject gameOverPanel;
+	[SerializeField] Button mainMenuButton;
+	[SerializeField] Button restartButton;
+
+
 	void Awake() {
+		gameOverPanel.SetActive(false);
+
 		spawnButton.onClick.AddListener(LevelManager.getInstance().getHeroSpawner().spawnRandomHero);
+		mainMenuButton.onClick.AddListener(delegate {
+			throw new System.NotImplementedException();
+		});
+		restartButton.onClick.AddListener(delegate {
+			throw new System.NotImplementedException();
+		});
 	}
 
 	void Start() {
@@ -34,6 +48,7 @@ public class UIManager : MonoBehaviour {
 		Events.getInstance().enemyBeaten.AddListener(delegate (EnemyType e) { updateMana(); });
 		Events.getInstance().enemyBeaten.AddListener(delegate (EnemyType e) { updateStats(); });
 		Events.getInstance().heroSpawned.AddListener(delegate (HeroType h) { updateMana(); });
+		Events.getInstance().gameOver.AddListener(delegate { gameOverPanel.SetActive(true); });
 	}
 
 	void setWave(int wave) {

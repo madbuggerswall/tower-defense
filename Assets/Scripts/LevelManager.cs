@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 	HeroGrid heroGrid;
 	HeroSpawner heroSpawner;
 	EnemySpawner enemySpawner;
+	Princess princess;
 
 	StatManager statManager;
 
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour {
 		heroGrid = FindObjectOfType<HeroGrid>();
 		heroSpawner = FindObjectOfType<HeroSpawner>();
 		enemySpawner = FindObjectOfType<EnemySpawner>();
+		princess = FindObjectOfType<Princess>();
 
 		statManager = new StatManager();
 	}
@@ -35,6 +37,7 @@ public class LevelManager : MonoBehaviour {
 	public HeroGrid getHeroGrid() { return heroGrid; }
 	public HeroSpawner getHeroSpawner() { return heroSpawner; }
 	public EnemySpawner getEnemySpawner() { return enemySpawner; }
+	public Princess getPrincess() { return princess; }
 
 	public StatManager getStatManager() { return statManager; }
 }
