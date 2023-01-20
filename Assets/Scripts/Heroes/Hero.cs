@@ -24,13 +24,8 @@ public abstract class Hero : MonoBehaviour {
 	[SerializeField] protected float damageRadius = 4;
 
 	Enemy target;
-	ObjectPool objectPool;
 
 	bool isEngaging;
-
-	void Awake() {
-		objectPool = GetComponentInChildren<ObjectPool>();
-	}
 
 	// IPoolable.reset()
 	protected virtual void OnEnable() {
@@ -53,7 +48,7 @@ public abstract class Hero : MonoBehaviour {
 			// Check again if empty
 			if (colliders.Length == 0)
 				continue;
-				
+
 			// Add detected enemies to a list to be sorted
 			for (int i = 0; i < colliders.Length; i++)
 				enemiesInRange.Add(colliders[i].GetComponent<Enemy>());
@@ -69,13 +64,13 @@ public abstract class Hero : MonoBehaviour {
 		}
 	}
 
-	// Damage enemy and throw a projectile as a visual aid
 	void attack(Enemy enemy) {
 		throwProjectile(enemy);
 	}
 
-	// No collision damage, just as a visual effect.
 	void throwProjectile(Enemy target) {
+		// Refactor this
+		ObjectPool objectPool = ProjectileContainer.getInstance().GetComponentInChildren<ObjectPool>();
 		Projectile projectile = objectPool.spawn(projectilePrefab.gameObject, transform.position).GetComponent<Projectile>();
 		projectile.throwAtTarget(target, damage);
 	}
@@ -104,7 +99,7 @@ public abstract class Hero : MonoBehaviour {
 	}
 
 	// Getters
-	
+
 	// Because propogating a System.Type would be ugly
 	public abstract HeroType getHeroType();
 

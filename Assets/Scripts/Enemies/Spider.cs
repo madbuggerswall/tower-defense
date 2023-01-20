@@ -1,5 +1,6 @@
 class Spider : Enemy {
 	const int defaultHealth = 80;
+	const int defaultDamage = 1;
 	const float defaultSpeed = 1.6f;
 
 	protected override void OnEnable() {

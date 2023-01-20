@@ -5,11 +5,14 @@ using UnityEngine;
 public class ProjectileContainer : MonoBehaviour {
 	static ProjectileContainer instance;
 
+	ObjectPool objectPool;
+
 	void Awake() {
 		assertSingleton();
+
+		objectPool = GetComponentInChildren<ObjectPool>();
 	}
 
-	public void add(Transform projectile) { projectile.SetParent(transform); }
 	public bool isEmpty() { return (transform.childCount == 0); }
 
 	// Singleton

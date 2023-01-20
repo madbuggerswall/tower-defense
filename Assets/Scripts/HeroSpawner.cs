@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO Projectiles move with dragged heroes
 // TODO Stop heroes from firing when dragged
 // TODO Enemies start damaging princess
 // TODO Game over
