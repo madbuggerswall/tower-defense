@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class is for accessing the global object pool for projectiles
 public class ProjectileContainer : MonoBehaviour {
 	static ProjectileContainer instance;
 
@@ -9,11 +10,8 @@ public class ProjectileContainer : MonoBehaviour {
 
 	void Awake() {
 		assertSingleton();
-
 		objectPool = GetComponentInChildren<ObjectPool>();
 	}
-
-	public bool isEmpty() { return (transform.childCount == 0); }
 
 	// Singleton
 	public static ProjectileContainer getInstance() { return instance; }

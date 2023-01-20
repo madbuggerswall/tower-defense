@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour {
 		score.text = "Score " + statManager.getScore();
 	}
 
-	// Scene managment
+	// SceneManagement: These should've been in a level loader class
 	public void loadMainMenu() {
 		SceneManager.LoadScene(0);
 	}

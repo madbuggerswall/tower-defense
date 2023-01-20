@@ -1,14 +1,6 @@
 using UnityEngine;
 using System.IO;
 
-public static class FilePath {
-	// public static readonly string statsContainer = Application.persistentDataPath + "/statsContainer.dat";
-	// public static readonly string achievementsContainer = Application.persistentDataPath + "/achievementsContainer.dat";
-	// public static readonly string missionsContainer = Application.persistentDataPath + "/missionsContainer.dat";
-	// public static readonly string upgradesContainer = Application.persistentDataPath + "/upgradesContainer.dat";
-	// public static readonly string experienceContainer = Application.persistentDataPath + "/experienceContainer.dat";
-}
-
 public static class SaveManager {
 	public static void save<ISavable>(ISavable serializable, string filePath) {
 		string json = JsonUtility.ToJson(serializable, false);

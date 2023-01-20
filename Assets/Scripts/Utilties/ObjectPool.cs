@@ -25,6 +25,7 @@ public class ObjectPool : MonoBehaviour {
 		return addObject(prefab);
 	}
 
+	// Spawns a pooled object at position with rotation
 	public GameObject spawn(GameObject prefab, Vector3 position, Vector3 eulerAngles) {
 		GameObject spawnedObject = getObject(prefab);
 		spawnedObject.transform.position = position;
@@ -33,6 +34,7 @@ public class ObjectPool : MonoBehaviour {
 		return spawnedObject;
 	}
 
+	// Spawns a pooled object at position
 	public GameObject spawn(GameObject prefab, Vector3 position) {
 		GameObject spawnedObject = getObject(prefab);
 		spawnedObject.transform.position = position;
@@ -41,6 +43,7 @@ public class ObjectPool : MonoBehaviour {
 		return spawnedObject;
 	}
 
+	// Spawns a pooled object at world center
 	public GameObject spawn(GameObject prefab) {
 		GameObject spawnedObject = getObject(prefab);
 		spawnedObject.transform.position = Vector3.zero;

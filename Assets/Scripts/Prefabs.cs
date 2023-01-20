@@ -52,6 +52,7 @@ public class Prefabs : MonoBehaviour {
 		}
 	}
 
+	// To aid random hero selection
 	public Hero getHero(int heroType) {
 		return getHero((HeroType) heroType);
 	}

@@ -7,6 +7,7 @@ public class Knight : Hero {
 	const float defaultDamagePeriod = 1;
 	const float defaultDamageRadius = 4;
 
+	// Reset poolable object
 	protected override void OnEnable() {
 		base.OnEnable();
 		damage = defaultDamage;

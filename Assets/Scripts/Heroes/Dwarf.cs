@@ -7,6 +7,7 @@ public class Dwarf : Hero {
 	const float defaultDamagePeriod = 3.2f;
 	const float defaultDamageRadius = 4;
 
+	// Reset poolable object
 	protected override void OnEnable() {
 		base.OnEnable();
 		damage = defaultDamage;

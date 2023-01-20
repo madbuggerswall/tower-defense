@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// HeroGrid consists of Cells, Cells can hold heroes
 public class Cell : MonoBehaviour {
 	public Hero hero;
 

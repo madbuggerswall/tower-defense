@@ -3,6 +3,7 @@ class Cyclops : Enemy {
 	const int defaultDamage = 4;
 	const float defaultSpeed = 0.8f;
 
+	// Reset poolable object
 	protected override void OnEnable() {
 		health = defaultHealth;
 		damage = defaultDamage;

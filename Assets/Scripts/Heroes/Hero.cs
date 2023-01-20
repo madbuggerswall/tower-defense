@@ -31,14 +31,14 @@ public abstract class Hero : MonoBehaviour {
 		Events.getInstance().gameOver.AddListener(delegate { gameObject.SetActive(false); });
 	}
 
-	// IPoolable.reset()
+	// Reset poolable object, it should've been a IPoolable.reset() call.
 	protected virtual void OnEnable() {
 		isEngaging = false;
 		setLevel(1);
 		StartCoroutine(checkRadiusPeriodically(damageRadius, 0.2f));
 	}
 
-	// Break down this abomination of a function
+	// Check radius for enemies, sort them by their path progress, make the first one the target
 	IEnumerator checkRadiusPeriodically(float radius, float checkPeriod) {
 		int layerMask = LayerMask.GetMask("Enemy");
 		List<Enemy> enemiesInRange = new List<Enemy>(4);
@@ -68,12 +68,14 @@ public abstract class Hero : MonoBehaviour {
 		}
 	}
 
+	// Attack function could hold sound and particle FX and other behavior
 	void attack(Enemy enemy) {
 		throwProjectile(enemy);
 	}
 
+	// Spawn and throw a projectile, setting its target and damage value
 	void throwProjectile(Enemy target) {
-		// Refactor this
+		// A global object pool for projectiles, because of performance and parent-transform reasons
 		ObjectPool objectPool = ProjectileContainer.getInstance().GetComponentInChildren<ObjectPool>();
 		Projectile projectile = objectPool.spawn(projectilePrefab.gameObject, transform.position).GetComponent<Projectile>();
 		projectile.throwAtTarget(target, damage);
@@ -108,7 +110,7 @@ public abstract class Hero : MonoBehaviour {
 
 	// Getters
 
-	// Because propogating a System.Type would be ugly
+	// Because propogating a System.Type through a UnityEvent would be ugly
 	public abstract HeroType getHeroType();
 
 	public int getLevel() { return level; }

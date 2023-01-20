@@ -3,6 +3,7 @@ class Spider : Enemy {
 	const int defaultDamage = 1;
 	const float defaultSpeed = 1.6f;
 
+	// Reset poolable object
 	protected override void OnEnable() {
 		health = defaultHealth;
 		damage = defaultDamage;

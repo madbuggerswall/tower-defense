@@ -11,7 +11,7 @@ public class MainMenuUI : MonoBehaviour {
 		playButton.onClick.AddListener(play);
 	}
 
-	// Scene managment
+	// Scene management
 	public void play() {
 		SceneManager.LoadScene(1);
 	}

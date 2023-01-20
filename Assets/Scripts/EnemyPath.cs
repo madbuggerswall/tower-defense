@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Node based linear path for enemies to follow.
 public class EnemyPath : MonoBehaviour {
 	Transform[] nodes;
 

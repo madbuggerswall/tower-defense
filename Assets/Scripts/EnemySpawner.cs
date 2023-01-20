@@ -18,6 +18,7 @@ public class EnemySpawner : MonoBehaviour {
 		StartCoroutine(spawnWaves(waveContainer));
 	}
 
+	// Spawn waves periodically every waveBreak seconds
 	IEnumerator spawnWaves(WaveContainer waveContainer) {
 		int waveCount = 1;
 
@@ -29,6 +30,7 @@ public class EnemySpawner : MonoBehaviour {
 		}
 	}
 
+	// Spawn enemies periodically every Wave.period seconds
 	IEnumerator spawnEnemies(Wave wave) {
 		Queue<EnemyType> enemyQueue = wave.getEnemyQueue();
 

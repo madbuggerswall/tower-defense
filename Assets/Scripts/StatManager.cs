@@ -16,11 +16,13 @@ public class StatManager {
 
 	[SerializeField] int score;
 
+	// Subscribe to related events
 	public StatManager() {
 		Events.getInstance().enemyBeaten.AddListener(onEnemyBeaten);
 		Events.getInstance().heroSpawned.AddListener(onHeroSpawned);
 	}
 
+	// Record stats for enemies beaten
 	void onEnemyBeaten(EnemyType enemyType) {
 		switch (enemyType) {
 			case EnemyType.cyclops:
@@ -41,6 +43,7 @@ public class StatManager {
 		}
 	}
 
+	// Record stats for heroes spawned
 	void onHeroSpawned(HeroType heroType) {
 		switch (heroType) {
 			case HeroType.dwarf:
@@ -55,6 +58,7 @@ public class StatManager {
 		}
 	}
 
+	// Getters
 	public int getCyclopsesBeaten() { return cyclopsesBeaten; }
 	public int getGhostsBeaten() { return ghostsBeaten; }
 	public int getSpidersBeaten() { return spidersBeaten; }

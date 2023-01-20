@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour {
 
 		assertSingleton();
 
+		// Find mediated objects
 		enemyPath = FindObjectOfType<EnemyPath>();
 		heroGrid = FindObjectOfType<HeroGrid>();
 		heroSpawner = FindObjectOfType<HeroSpawner>();

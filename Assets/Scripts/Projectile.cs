@@ -15,17 +15,26 @@ public class Projectile : MonoBehaviour {
 	Enemy target;
 
 	void Update() {
+		checkTarget(target);
+		hitTarget(target);
+		moveTowardsTarget(target.transform.position);
+	}
+	
+	// Check if target is still active, if not projectile is disabled
+	void checkTarget(Enemy target){
 		if (!target.gameObject.activeInHierarchy)
 			gameObject.SetActive(false);
+	}
 
+	// Deal damage to target if projectile is at target position
+	void hitTarget(Enemy target) {
 		if (transform.position == target.transform.position) {
 			target.takeDamage(damage);
 			gameObject.SetActive(false);
 		}
-
-		moveTowardsTarget(target.transform.position);
 	}
 
+	// Transform based movement
 	void moveTowardsTarget(Vector3 targetPosition) {
 		Vector3 towardsPosition = Vector3.MoveTowards(transform.position, targetPosition, maxDelta * Time.deltaTime);
 		transform.position = towardsPosition;

@@ -49,8 +49,3 @@ public class HeroGrid : MonoBehaviour {
 	// Getters
 	public Cell[,] getCells() { return cells; }
 }
-
-
-// Grid snapping for drag and drop possible
-// Vector3Int gridIndex = grid.WorldToCell(cells[randomIndex.x, randomIndex.y].transform.position);
-// Vector3 position = grid.GetCellCenterWorld(gridIndex);

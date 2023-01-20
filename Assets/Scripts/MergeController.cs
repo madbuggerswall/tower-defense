@@ -6,6 +6,7 @@ public class MergeController : MonoBehaviour {
 	[SerializeField] Hero mergingHero;
 	Hero hero;
 
+	// This guard avoids undesired merges
 	bool dragged;
 
 	void Awake() {
@@ -13,6 +14,7 @@ public class MergeController : MonoBehaviour {
 		dragged = false;
 	}
 
+	// Detect merging candidate
 	void OnTriggerEnter2D(Collider2D other) {
 		if (!dragged)
 			return;
@@ -22,6 +24,7 @@ public class MergeController : MonoBehaviour {
 		mergingHero = other.GetComponent<Hero>();
 	}
 
+	// Avoid undesired/cancelled merges
 	void OnTriggerExit2D(Collider2D other) {
 		if (!dragged)
 			return;
@@ -33,15 +36,18 @@ public class MergeController : MonoBehaviour {
 		}
 	}
 
+	// Mark hero to avoid undesired merges
 	void OnMouseDown() {
 		dragged = true;
 	}
 
+	// Drag the hero
 	void OnMouseDrag() {
 		Vector3 mouseWorldPos = getMouseWorldPos();
 		transform.position = new Vector3(mouseWorldPos.x, mouseWorldPos.y, 0);
 	}
 
+	// Merge heroes if they are mergeable
 	void OnMouseUp() {
 		dragged = false;
 
@@ -52,6 +58,7 @@ public class MergeController : MonoBehaviour {
 		}
 	}
 
+	// This should be in an InputManager class
 	Vector3 getMouseWorldPos() {
 		float mousePosX = Mathf.Clamp(Input.mousePosition.x, 0, Screen.width);
 		float mousePosY = Mathf.Clamp(Input.mousePosition.y, 0, Screen.height);
@@ -59,12 +66,14 @@ public class MergeController : MonoBehaviour {
 		return Camera.main.ScreenToWorldPoint(new Vector3(mousePosX, mousePosY, 0));
 	}
 
+	// If heroes are the same type and same level they can merge
 	bool canMerge(Hero hero, Hero mergingHero) {
 		bool sameType = mergingHero?.GetType() == hero.GetType();
 		bool sameLevel = mergingHero?.getLevel() == hero.getLevel();
 		return sameType && sameLevel;
 	}
 
+	// Spawn a random promoted hero
 	void merge(Hero hero, Hero mergingHero) {
 		// Target cell
 		Cell cell = mergingHero.GetComponentInParent<Cell>();
@@ -78,5 +87,6 @@ public class MergeController : MonoBehaviour {
 		heroSpawner.spawnRandomHeroAtCell(cell, hero.getLevel() + 1);
 	}
 
+	// Getters
 	public bool isDragged(){return dragged;}
 }

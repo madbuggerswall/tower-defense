@@ -3,6 +3,7 @@ class Ghost : Enemy {
 	const int defaultDamage = 2;
 	const float defaultSpeed = 1f;
 
+	// Reset poolable object
 	protected override void OnEnable() {
 		health = defaultHealth;
 		damage = defaultDamage;

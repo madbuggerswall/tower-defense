@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// Cyclops: slow and strong
-// Spider: balanced
-// ghost: fast and weakz
-
+// For EnemySpawner and firing Events
 public enum EnemyType {
 	cyclops,
 	spider,
@@ -34,7 +31,7 @@ public abstract class Enemy : MonoBehaviour {
 		Events.getInstance().gameOver.AddListener(delegate { gameObject.SetActive(false); });
 	}
 
-	// ObjectPool, IPoolable.Reset
+	// Reset poolable object, it should've been a IPoolable.reset() call.
 	protected virtual void OnEnable() {
 		pathPercentage = 0;
 		movementAction = delegate { moveAlongPath(LevelManager.getInstance().getEnemyPath()); };
@@ -56,11 +53,13 @@ public abstract class Enemy : MonoBehaviour {
 		}
 	}
 
+	// Scale the health bar to visualize health
 	void updateHealthBar() {
 		float barScale = Mathf.Clamp((float) health / getDefaultHealth(), 0, getDefaultHealth());
 		healthBar.localScale = new Vector3(barScale, 1, 1);
 	}
 
+	// Take damage and notify evetns if beaten 
 	public void takeDamage(int damage) {
 		health -= damage;
 		updateHealthBar();
@@ -71,6 +70,7 @@ public abstract class Enemy : MonoBehaviour {
 		}
 	}
 
+	// Called when at target, attack the princess periodically
 	IEnumerator attackPeriodically(float period) {
 		Princess princess = LevelManager.getInstance().getPrincess();
 		while (true) {
