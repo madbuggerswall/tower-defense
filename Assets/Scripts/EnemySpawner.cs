@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
-	const float waveBreak = 2f;
+	const float waveBreak = 4f;
 
 	WaveContainer waveContainer;
 	ObjectPool objectPool;

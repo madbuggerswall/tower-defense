@@ -6,15 +6,15 @@ public class MergeController : MonoBehaviour {
 	[SerializeField] Hero mergingHero;
 	Hero hero;
 
-	bool isDragged;
+	bool dragged;
 
 	void Awake() {
 		hero = GetComponent<Hero>();
-		isDragged = false;
+		dragged = false;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (!isDragged)
+		if (!dragged)
 			return;
 		if (other.gameObject.layer != LayerMask.NameToLayer("Hero"))
 			return;
@@ -23,7 +23,7 @@ public class MergeController : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
-		if (!isDragged)
+		if (!dragged)
 			return;
 		if (other.gameObject.layer != LayerMask.NameToLayer("Hero"))
 			return;
@@ -34,7 +34,7 @@ public class MergeController : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		isDragged = true;
+		dragged = true;
 	}
 
 	void OnMouseDrag() {
@@ -43,7 +43,7 @@ public class MergeController : MonoBehaviour {
 	}
 
 	void OnMouseUp() {
-		isDragged = false;
+		dragged = false;
 
 		if (canMerge(hero, mergingHero)) {
 			merge(hero, mergingHero);
@@ -77,4 +77,6 @@ public class MergeController : MonoBehaviour {
 		HeroSpawner heroSpawner = LevelManager.getInstance().getHeroSpawner();
 		heroSpawner.spawnRandomHeroAtCell(cell, hero.getLevel() + 1);
 	}
+
+	public bool isDragged(){return dragged;}
 }

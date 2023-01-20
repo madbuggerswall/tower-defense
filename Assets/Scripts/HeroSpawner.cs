@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO Stop heroes from firing when dragged
-// TODO Enemies start damaging princess
-// TODO Game over
-// TODO Menu screen
-// TODO Do more waves screen
+// TODO Do more waves 
+// TODO Fast forward button
 
 public class HeroSpawner : MonoBehaviour {
 	const int manaIncrement = 10;

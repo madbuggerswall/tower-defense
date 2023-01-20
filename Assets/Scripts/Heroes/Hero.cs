@@ -81,15 +81,19 @@ public abstract class Hero : MonoBehaviour {
 
 	IEnumerator attackPeriodically(float period) {
 		isEngaging = true;
-		while (target != null && target.gameObject.activeInHierarchy) {
+		MergeController mergeController = GetComponent<MergeController>();
+		
+		// Attack while target is active, and hero is not being dragged
+		while (target != null && target.gameObject.activeInHierarchy && !mergeController.isDragged()) {
 			yield return new WaitForSeconds(period);
 			attack(target);
 		}
+		
 		target = null;
 		isEngaging = false;
 	}
 
-	// Each stat buffed 10%
+	// Each stat buffed 10% for every promotion
 	public void setLevel(int level) {
 		for (int i = this.level; i < level; i++) {
 			damage += Mathf.CeilToInt(damage * 0.1f);

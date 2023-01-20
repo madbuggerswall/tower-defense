@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [DefaultExecutionOrder(4)]
@@ -29,12 +30,8 @@ public class UIManager : MonoBehaviour {
 		gameOverPanel.SetActive(false);
 
 		spawnButton.onClick.AddListener(LevelManager.getInstance().getHeroSpawner().spawnRandomHero);
-		mainMenuButton.onClick.AddListener(delegate {
-			throw new System.NotImplementedException();
-		});
-		restartButton.onClick.AddListener(delegate {
-			throw new System.NotImplementedException();
-		});
+		mainMenuButton.onClick.AddListener(loadMainMenu);
+		restartButton.onClick.AddListener(restartLevel);
 	}
 
 	void Start() {
@@ -50,6 +47,7 @@ public class UIManager : MonoBehaviour {
 		Events.getInstance().heroSpawned.AddListener(delegate (HeroType h) { updateMana(); });
 		Events.getInstance().gameOver.AddListener(delegate { gameOverPanel.SetActive(true); });
 	}
+
 
 	void setWave(int wave) {
 		this.wave.text = "Wave\n" + wave.ToString();
@@ -70,5 +68,14 @@ public class UIManager : MonoBehaviour {
 		spidersBeaten.text = "x" + statManager.getSpidersBeaten().ToString();
 
 		score.text = "Score " + statManager.getScore();
+	}
+
+	// Scene managment
+	public void loadMainMenu() {
+		SceneManager.LoadScene(0);
+	}
+
+	public void restartLevel() {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
