@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO Do more waves 
-// TODO Fast forward button
-
 public class HeroSpawner : MonoBehaviour {
 	const int manaIncrement = 10;
 	const int initialMana = 60;

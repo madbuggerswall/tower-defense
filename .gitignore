@@ -10,8 +10,8 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-/Assets/Sprites/
-/Assets/UI/
+# /Assets/Sprites/
+# /Assets/UI/
 
 /.vscode
 
