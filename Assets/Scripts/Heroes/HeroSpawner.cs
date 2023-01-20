@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeroSpawner : MonoBehaviour {
 	const int manaIncrement = 10;
-	const int initialMana = 60;
+	const int initialMana = 100;
 
 	[SerializeField] int manaRequired;
 	[SerializeField] int mana;

@@ -25,7 +25,6 @@ public class LevelUI : MonoBehaviour {
 	[SerializeField] Button mainMenuButton;
 	[SerializeField] Button restartButton;
 
-
 	void Awake() {
 		gameOverPanel.SetActive(false);
 

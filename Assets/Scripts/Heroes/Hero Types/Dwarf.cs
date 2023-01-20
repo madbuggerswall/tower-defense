@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dwarf : Hero {
 	const int defaultDamage = 32;
-	const float defaultDamagePeriod = 3.2f;
+	const float defaultDamagePeriod = 4f;
 	const float defaultDamageRadius = 4;
 
 	// Reset poolable object
