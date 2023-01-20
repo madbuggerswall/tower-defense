@@ -2,6 +2,8 @@
 
 A tower defense game where you **spawn random heroes**  on a grid and **merge** them **to boost** their stats, like in Codeway's very own **Rumble Rivals**.
 
+![alt](https://drive.google.com/file/d/1PQdfITwOt2K7y0uhuAfAAfKM1lQDnA8M/view?usp=sharing)
+
 ### Basics
 - Start with 60 Mana points
 - As heroes are spawned, spawning another hero will require 10 Mana points more than before.
@@ -9,8 +11,6 @@ A tower defense game where you **spawn random heroes**  on a grid and **merge** 
 ----
 - Enemies come in waves. There are 16 hard-coded waves.
 - Enemy spawn period is determined by the ongoing wave.
-
-
 
 ### Heroes
 Heroes of the same type and same level can be merged. Which will spawn a random leveled up hero. With each promotion a hero will be buffed 10%.
