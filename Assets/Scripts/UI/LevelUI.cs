@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [DefaultExecutionOrder(4)]
-public class UIManager : MonoBehaviour {
+public class LevelUI : MonoBehaviour {
 	[Header("Stats Panel")]
 	[SerializeField] Text cyclopsBeaten;
 	[SerializeField] Text ghostsBeaten;
